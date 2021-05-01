@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "jsx": "react"
+  },
+  "extends": "./tsconfig.json",
+  "include": [
+    "front/**/*.ts",
+    "front/**/*.tsx",
+    "common/**/*.ts"
+  ]
+}

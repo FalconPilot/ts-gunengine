@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "outDir": "dist",
+    "baseUrl": ".",
+    "paths": {
+      "$common/*": ["./common/*"]
+    }
+  },
+  "include": [
+    "back/**/*.ts",
+    "common/**/*.ts"
+  ]
+}
