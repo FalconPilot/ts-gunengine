@@ -1,4 +1,5 @@
 import styled, { css, keyframes } from 'styled-components'
+
 import { viewportWidth } from '../app/styled'
 
 const barHeight = 25
@@ -31,10 +32,7 @@ export const SideView = styled.div`
   justify-content: flex-start;
 `
 
-export const StaticGunWrapper = styled.div<{
-  gunName: string
-  xray: boolean
-}>`
+export const StaticGunWrapper = styled.div<{ gunName: string }>`
   position: relative;
   width: ${gunWidth}px;
   height: ${gunHeight}px;
@@ -57,12 +55,6 @@ export const StaticGunWrapper = styled.div<{
     font-weight: bold;
     z-index: 1;
   }
-
-  ${p => p.xray && `
-    & img {
-      opacity: 0.7;
-    }
-  `}
 `
 
 export const ViewControls = styled.div`
@@ -95,7 +87,7 @@ export const GunWrapper = styled.div<{ exploded: boolean }>`
   width: 100%;
   height: 100%;
   z-index: 2;
-  transform: rotate(${p => p.exploded ? 0 : -5}deg);
+  /* transform: rotate(${p => p.exploded ? 0 : -5}deg); */
 `
 
 const transitionAnimation = (
@@ -118,6 +110,17 @@ const selectedPartStyles = css`
   filter: drop-shadow(0px 0px 4px #0CF);
 `
 
+const xrayOpacity = (layer: number): number => {
+  const min = 0.3
+  const opacity = (100 - layer) / 100
+
+  if (opacity < min) {
+    return min
+  }
+
+  return opacity
+}
+
 export const PartWrapper = styled.img<{
   explodedX: number
   explodedY: number
@@ -128,6 +131,7 @@ export const PartWrapper = styled.img<{
   shouldAnimate: boolean
   reverseAnimation: boolean
   selected: boolean
+  xray: boolean
 }>`
   position: absolute;
   transform: translate(${p => p.exploded ? p.explodedX : p.originX}px, ${p => p.exploded ? p.explodedY : p.originY}px);
@@ -137,6 +141,10 @@ export const PartWrapper = styled.img<{
   &:hover {
     cursor: pointer;
   }
+
+  ${p => p.xray && `
+    opacity: ${xrayOpacity(p.layer)};
+  `}
 
   ${p => p.selected ? selectedPartStyles : `
     &:hover {
@@ -161,6 +169,15 @@ export const StatColumn = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+`
+
+export const NumberStat = styled.div`
+  width: 100%;
+  font-weight: bold;
+  margin: 4px 0;
+  font-size: 16px;
+  color: #333;
+  text-align: left;
 `
 
 export const StatBarWrapper = styled.div<{ tag: string }>`

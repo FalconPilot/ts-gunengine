@@ -32,12 +32,11 @@ export const Gun: React.FunctionComponent = () => {
   const onPartChange = React.useCallback((partKey: keyof typeof gun.parts) => (
     event: React.MouseEvent<HTMLButtonElement>
   ): void => {
-    const idx = parseInt(event.currentTarget.value, 10)
-
+    const key = event.currentTarget.value
     setState({ ...state, shouldAnimate: false })
 
-    if (!isNaN(idx) && !!gun.parts[partKey][idx]) {
-      dispatch(actions.setPart([partKey, gun.parts[partKey][idx]]))
+    if (!!gun.parts[partKey][key]) {
+      dispatch(actions.setPart([partKey, gun.parts[partKey][key]]))
     }
   }, [dispatch, gun, state])
 

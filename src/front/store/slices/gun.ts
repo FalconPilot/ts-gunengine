@@ -9,6 +9,30 @@ const initialState: GunState<ARCParts> = {
   parts: ARCDefaultParts
 }
 
+const removeParts = <P extends GunPartKeys>(
+  state: GunState<P>
+): GunState<P> => {
+  const lockedKeys = Object
+    .values<Part<P>>(state.parts)
+    .reduce<P[]>((acc, part) => acc.concat(part.locks ?? []), [])
+
+  const forbiddenItems = Object
+    .values<Part<P>>(state.parts)
+    .reduce<string[]>((acc, part) => acc.concat(part.lockSpecificAssets ?? []), [])
+
+  return forbiddenItems.reduce<GunState<P>>((acc, key) => ({
+    ...acc,
+    parts: Object.entries(acc.parts).reduce<GunParts<P>>((p, [k, v]) => ({
+      ...p,
+      [k]: (
+        key === k || lockedKeys.includes(k as P)
+          ? Object.values(state.currentGun.parts[k as P])[0]
+          : v
+      )
+    }), acc.parts)
+  }), state)
+}
+
 const setGun = <P extends GunPartKeys>(
   state: GunState<P>,
   action: PayloadAction<[Gun<P>, GunParts<P>]>
@@ -21,7 +45,7 @@ const setGun = <P extends GunPartKeys>(
 const setPart = <P extends GunPartKeys>(
   state: GunState<P>,
   action: PayloadAction<[P, Part<P>]>
-): GunState<P> => ({
+): GunState<P> => removeParts({
   ...state,
   parts: {
     ...state.parts,

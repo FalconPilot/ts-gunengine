@@ -6,17 +6,23 @@ export const defaultLang = langs[0]
 
 export enum Authors {
   AB = 'A.B.',
+  Benjoo = 'Benjoo',
   DrNoob = 'Dr. Noob',
   FalconPilot = 'FalconPilot',
-  LuckyStriker = 'Lucky Striker'
+  LilyRin = 'Lily Rin',
+  LuckyStriker = 'Lucky Striker',
+  Mattia = 'El Mattia'
 }
 
 export const authorLink = (author: Authors): string => {
   switch (author) {
     case Authors.AB: return 'https://www.flickr.com/photos/69234163@N04/'
+    case Authors.Benjoo: return 'https://www.flickr.com/photos/66666941@N02/'
     case Authors.DrNoob: return 'http://pimpmygun.doctornoob.com/'
     case Authors.FalconPilot: return 'https://www.flickr.com/photos/71549116@N04/'
+    case Authors.LilyRin: return 'https://www.flickr.com/photos/10589790@N05/'
     case Authors.LuckyStriker: return 'https://www.flickr.com/photos/gogoluckystrike/'
+    case Authors.Mattia: return 'https://www.flickr.com/photos/73711787@N03/'
   }
 }
 
@@ -34,6 +40,7 @@ export const partName = (partKey: GunPartKeys): string => {
     case 'accessory_bottom': return 'Bottom accessory'
     case 'accessory_side': return 'Side accessory'
     case 'accessory_top': return 'Top accessory'
+    case 'ammo': return 'Ammunition type'
     case 'barrel': return 'Barrel'
     case 'block': return 'Front block'
     case 'bolt': return 'Bolt'
@@ -45,6 +52,7 @@ export const partName = (partKey: GunPartKeys): string => {
     case 'muzzle': return 'Muzzle'
     case 'sight': return 'Rear sight/Optic'
     case 'stock': return 'Stock'
+    case 'trigger': return 'Trigger group'
     case 'upper': return 'Upper receiver'
   }
 }

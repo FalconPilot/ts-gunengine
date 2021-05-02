@@ -25,6 +25,7 @@ export type GunPartKeys =
   | 'accessory_bottom'
   | 'accessory_side'
   | 'accessory_top'
+  | 'ammo'
   | 'barrel'
   | 'block'
   | 'bolt'
@@ -34,15 +35,20 @@ export type GunPartKeys =
   | 'lower'
   | 'magazine'
   | 'muzzle'
-  | 'upper'
   | 'sight'
   | 'stock'
+  | 'trigger'
+  | 'upper'
 
 export type ARCParts =
+  | 'accessory_bottom'
+  | 'accessory_side'
   | 'accessory_top'
+  | 'ammo'
   | 'barrel'
   | 'bolt'
   | 'block'
+  | 'gastube'
   | 'grip'
   | 'handguard'
   | 'lower'
@@ -50,6 +56,7 @@ export type ARCParts =
   | 'muzzle'
   | 'sight'
   | 'stock'
+  | 'trigger'
   | 'upper'
 
 export interface Part<PartKeys extends GunPartKeys> {
@@ -63,14 +70,18 @@ export interface Part<PartKeys extends GunPartKeys> {
   attachPoint?: PartKeys
   layer: number
   locks?: PartKeys[]
-  lockSpecificAssets?: {
-    [k in PartKeys]?: number
-  }
+  lockSpecificAssets?: string[]
   stats?: PartStats
   suffixAssets?: {
     [k in PartKeys]?: string
   }
+  alterExplodedOffsetX?: {
+    [k in PartKeys]?: number
+  }
   alterOffsetX?: {
+    [k in PartKeys]?: number
+  }
+  alterExplodedOffsetY?: {
     [k in PartKeys]?: number
   }
   alterOffsetY?: {
@@ -82,7 +93,7 @@ export interface Gun<PartKeys extends GunPartKeys> {
   name: string
   caliber: Caliber
   parts: {
-    [k in PartKeys]: Part<PartKeys>[]
+    [k in PartKeys]: Record<string, Part<PartKeys>>
   }
 }
 
