@@ -1,5 +1,5 @@
 {
-  "watch": ["back"],
+  "watch": ["./src/back", "./src/common"],
   "ext": "ts",
   "exec": "ts-node -r tsconfig-paths/register"
 }

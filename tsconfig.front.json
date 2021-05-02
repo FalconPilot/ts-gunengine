@@ -1,11 +1,17 @@
 {
-  "compilerOptions": {
-    "jsx": "react"
-  },
   "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react",
+    "lib": [
+      "dom",
+      "es2015",
+      "es5",
+      "es6"
+    ]
+  },
   "include": [
-    "front/**/*.ts",
-    "front/**/*.tsx",
-    "common/**/*.ts"
+    "./src/front/**/*.ts",
+    "./src/front/**/*.tsx",
+    "./src/common/**/*.ts"
   ]
 }

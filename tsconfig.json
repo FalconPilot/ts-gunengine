@@ -2,13 +2,22 @@
   "compilerOptions": {
     "strict": true,
     "outDir": "dist",
-    "baseUrl": ".",
+    "target": "ES5",
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "baseUrl": "./src",
     "paths": {
-      "$common/*": ["./common/*"]
+      "$back/*": ["./back/*"],
+      "$common/*": ["./common/*"],
+      "$front/*": ["./front/*"]
     }
   },
   "include": [
-    "back/**/*.ts",
-    "common/**/*.ts"
+    "./src/back/**/*.ts",
+    "./src/common/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules/**/*"
   ]
 }
