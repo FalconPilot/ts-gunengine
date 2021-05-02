@@ -7,7 +7,7 @@ import { langs, defaultLang } from '$common/constants'
 
 import router from './router'
 
-const PORT = 8789
+const PORT = process.env.PORT
 
 const app = express()
 
