@@ -32,7 +32,7 @@ router(app)
 
 langs.forEach(lang => {
   app.get(`/${lang}`, (req, res) => {
-    ejs.renderFile(path.resolve(__dirname, 'ejs', 'frame.ejs'), {
+    ejs.renderFile(path.resolve(__dirname, 'static', 'ejs', 'frame.ejs'), {
       lang
     }).then(html => { res.send(html) }).catch(err => {
       res.status(500).send(err.message)

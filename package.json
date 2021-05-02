@@ -3,10 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "clean": "rm -rf dist",
+    "clean": "shx rm -rf dist",
     "dev:back": "nodemon src/back/index.ts",
     "dev:front": "webpack --watch",
-    "dev": "yarn run clean && concurrently \"yarn run dev:back\" \"yarn run dev:front\""
+    "dev": "yarn run clean && concurrently \"yarn run dev:back\" \"yarn run dev:front\"",
+    "build:back": "tsc && shx cp -r src/back/static dist/back/static",
+    "build:front": "webpack --mode=production",
+    "build": "yarn run clean && yarn run build:front && yarn run build:back",
+    "start": "node -r tsconfig-paths/register -r ts-node/register dist/back/index.js"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.5.1",
@@ -17,6 +21,7 @@
     "react-redux": "^7.2.4",
     "redux": "^4.1.0",
     "redux-saga": "^1.1.3",
+    "shx": "^0.3.3",
     "styled-components": "^5.2.3"
   },
   "devDependencies": {

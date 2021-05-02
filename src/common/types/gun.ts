@@ -14,11 +14,12 @@ export interface CaliberStats {
 export interface PartStats {
   damage?: number
   piercing?: number
+  capacity?: number
   accuracy?: PercentileValue
   handling?: TenthValue
   reliability?: PercentileValue
   noise?: TenthValue
-  capacity?: number
+  edge?: TenthValue
 }
 
 export type GunPartKeys =

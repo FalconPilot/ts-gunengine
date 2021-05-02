@@ -43,6 +43,19 @@ export const ARC: Gun<ARCParts> = {
         stats: {
           reliability: 40
         }
+      },
+      pdw: {
+        author: Authors.Wouter,
+        name: 'PDW lower receiver',
+        assetName: 'ARC_lower2.png',
+        offsetX: 250,
+        offsetY: 142,
+        layer: 50,
+        stats: {
+          handling: 1,
+          edge: 1,
+          reliability: 20
+        }
       }
     },
     upper: {
@@ -52,11 +65,23 @@ export const ARC: Gun<ARCParts> = {
         assetName: 'ARC_upper1.png',
         offsetX: 250,
         offsetY: 130,
-        explodedOffsetY: 105,
+        explodedOffsetY: 85,
         layer: 60,
         stats: {
-          handling: 1,
           accuracy: 5,
+          reliability: 30
+        }
+      },
+      tactical: {
+        author: Authors.Benjoo,
+        name: 'Tactical upper receiver',
+        assetName: 'ARC_upper2.png',
+        offsetX: 232,
+        offsetY: 130,
+        explodedOffsetY: 85,
+        layer: 60,
+        stats: {
+          accuracy: 15,
           reliability: 20
         }
       }
@@ -114,7 +139,7 @@ export const ARC: Gun<ARCParts> = {
         stats: {
           capacity: 10,
           handling: 2,
-          reliability: 10
+          reliability: 5
         }
       },
       tac30: {
@@ -189,7 +214,7 @@ export const ARC: Gun<ARCParts> = {
         },
         stats: {
           handling: 1,
-          accuracy: 15
+          accuracy: 25
         }
       }
     },
@@ -383,6 +408,8 @@ export const ARC: Gun<ARCParts> = {
         layer: 45,
         stats: {
           noise: 1,
+          accuracy: 5,
+          handling: -2,
           piercing: -2
         }
       }
@@ -436,6 +463,19 @@ export const ARC: Gun<ARCParts> = {
         stats: {
           handling: 1
         }
+      },
+      angledGrip: {
+        author: Authors.DrNoob,
+        name: 'Angled grip',
+        assetName: 'foregrip2.png',
+        offsetX: 490,
+        offsetY: 170,
+        explodedOffsetX: 590,
+        explodedOffsetY: 280,
+        layer: 89,
+        stats: {
+          edge: 1
+        }
       }
     },
     accessory_side: {
@@ -458,7 +498,23 @@ export const ARC: Gun<ARCParts> = {
         explodedOffsetX: 730,
         explodedOffsetY: 240,
         lockSpecificAssets: ['laserTop'],
-        layer: 91
+        layer: 91,
+        stats: {
+          accuracy: 5
+        }
+      },
+      flashSide: {
+        author: Authors.Turkeyshot,
+        name: 'Flashlight',
+        assetName: 'flashlight_side1.png',
+        offsetX: 466,
+        offsetY: 139,
+        explodedOffsetX: 730,
+        explodedOffsetY: 240,
+        layer: 91,
+        stats: {
+          edge: 1
+        }
       }
     }
   }

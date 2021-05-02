@@ -123,6 +123,7 @@ const statIntel = (k: keyof PartStats): ['bonus' | 'neutral' | 'malus', string, 
     case 'accuracy': return ['bonus', 'Accuracy', '%']
     case 'capacity': return ['neutral', 'Capacity', 'rds']
     case 'damage': return ['bonus', 'Damage']
+    case 'edge': return ['bonus', 'Edge']
     case 'noise': return ['neutral', 'Noise']
     case 'handling': return ['bonus', 'Handling']
     case 'piercing': return ['bonus', 'Piercing']
@@ -169,10 +170,10 @@ export const GunView = <P extends GunPartKeys>(
 
   const toSuffix = Object
     .values<Part<P>>(parts)
-    .reduce((acc, part) => ({
+    .reduce<{ [k in keyof typeof parts]?: string }>((acc, part) => ({
       ...acc,
       ...part.suffixAssets
-    }), {}) as { [k in keyof typeof parts]: string }
+    }), {})
 
   const accuracy = gunPercentile(gun.caliber, partsList, 'accuracy')
   const handling = gunTenth(gun.caliber, partsList, 'handling')
@@ -181,6 +182,7 @@ export const GunView = <P extends GunPartKeys>(
   const damage = gunNumber(gun.caliber, partsList, 'damage')
   const piercing = gunNumber(gun.caliber, partsList, 'piercing')
   const capacity = gunNumber(gun.caliber, partsList, 'capacity')
+  const edge = gunTenth(gun.caliber, partsList, 'edge')
 
   return (
     <GunContainer>
@@ -201,13 +203,18 @@ export const GunView = <P extends GunPartKeys>(
           />
           <TenthStatBar
             tag='Handling'
-            barColor='#8C4'
+            barColor='#E82'
             wValue={handling}
           />
           <TenthStatBar
             tag='Noise'
-            barColor='#A77'
+            barColor='#C55'
             wValue={noise}
+          />
+          <TenthStatBar
+            tag='Edge'
+            barColor='#3C1'
+            wValue={edge}
           />
         </SideView>
         <StaticGunWrapper gunName={gun.name}>

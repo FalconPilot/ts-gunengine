@@ -11,7 +11,9 @@ export enum Authors {
   FalconPilot = 'FalconPilot',
   LilyRin = 'Lily Rin',
   LuckyStriker = 'Lucky Striker',
-  Mattia = 'El Mattia'
+  Mattia = 'El Mattia',
+  Turkeyshot = 'Turkeyshot',
+  Wouter = 'Wouter Kroon'
 }
 
 export const authorLink = (author: Authors): string => {
@@ -23,6 +25,8 @@ export const authorLink = (author: Authors): string => {
     case Authors.LilyRin: return 'https://www.flickr.com/photos/10589790@N05/'
     case Authors.LuckyStriker: return 'https://www.flickr.com/photos/gogoluckystrike/'
     case Authors.Mattia: return 'https://www.flickr.com/photos/73711787@N03/'
+    case Authors.Turkeyshot: return 'https://www.flickr.com/photos/53459776@N03/'
+    case Authors.Wouter: return 'https://www.flickr.com/photos/sh0ckwave/'
   }
 }
 
