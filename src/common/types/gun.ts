@@ -21,6 +21,7 @@ export interface PartStats {
   reliability?: PercentileValue
   noise?: TenthValue
   edge?: TenthValue
+  weight?: number
 }
 
 export type GunPartKeys =
@@ -61,6 +62,11 @@ export type ARCParts =
   | 'trigger'
   | 'upper'
 
+export type StatType =
+  | 'bonus'
+  | 'neutral'
+  | 'malus'
+
 export interface Part<PartKeys extends GunPartKeys> {
   author: Authors | null
   name: string
@@ -70,7 +76,6 @@ export interface Part<PartKeys extends GunPartKeys> {
   explodedOffsetX?: number
   explodedOffsetY?: number
   attachPoint?: PartKeys
-  weight?: number
   layer: number
   locks?: PartKeys[]
   lockSpecificAssets?: string[]

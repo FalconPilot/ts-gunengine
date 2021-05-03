@@ -8,7 +8,8 @@ import {
   Part,
   PartStats,
   PositivePercentileValue,
-  PositiveTenthValue
+  PositiveTenthValue,
+  StatType
 } from '$common/types'
 
 import {
@@ -40,6 +41,8 @@ import {
 } from './styled'
 
 import { PercentileStatBar, TenthStatBar } from './StatBar'
+
+type StatTuple = [string, number, StatType, string, string?]
 
 const applyCaliberStats = <StatType extends number>(
   caliber: Caliber,
@@ -113,7 +116,7 @@ const shouldDisplay = (lockedKeys: string[], restrictedParts: string[]) => <P ex
   part.assetName !== null
 )
 
-const statIntel = (k: keyof PartStats): ['bonus' | 'neutral' | 'malus', string, string?] => {
+const statIntel = (k: keyof PartStats): [StatType, string, string?] => {
   switch (k) {
     case 'accuracy': return ['bonus', 'Accuracy', '%']
     case 'capacity': return ['neutral', 'Capacity', 'rds']
@@ -123,7 +126,57 @@ const statIntel = (k: keyof PartStats): ['bonus' | 'neutral' | 'malus', string, 
     case 'handling': return ['bonus', 'Handling']
     case 'piercing': return ['bonus', 'Piercing']
     case 'reliability': return ['bonus', 'Reliability', '%']
+    case 'weight': return ['neutral', 'Weight', 'kg']
   }
+}
+
+const isPositive = (t: StatTuple): boolean => {
+  switch (t[2]) {
+    case 'neutral': return false
+    case 'bonus': return t[1] > 0
+    case 'malus': return t[1] < 0
+  }
+}
+
+const isNegative = (t: StatTuple): boolean => {
+  switch (t[2]) {
+    case 'neutral': return false
+    case 'bonus': return t[1] < 0
+    case 'malus': return t[1] > 0
+  }
+}
+
+const sortStats = (v1: StatTuple, v2: StatTuple): -1 | 1 => {
+  const t1 = v1[2]
+  const t2 = v2[2]
+  const suffix1 = v1[4]
+  const suffix2 = v2[4]
+
+  if (t1 === 'neutral' && t2 !== 'neutral') {
+    return -1
+  }
+
+  if (t2 === 'neutral' && t1 !== 'neutral') {
+    return 1
+  }
+
+  if (isPositive(v1) && isNegative(v2)) {
+    return -1
+  }
+
+  if (isPositive(v2) && isNegative(v1)) {
+    return 1
+  }
+
+  if (suffix1 && suffix1 !== suffix2) {
+    return 1
+  }
+
+  if (suffix2 && suffix2 !== suffix1) {
+    return -1
+  }
+
+  return v1[0] > v2[0] ? 1 : -1
 }
 
 export const GunView = <P extends GunPartKeys>(
@@ -178,7 +231,7 @@ export const GunView = <P extends GunPartKeys>(
   const piercing = gunNumber(gun.caliber, partsList, 'piercing')
   const capacity = gunNumber(gun.caliber, partsList, 'capacity')
   const edge = gunTenth(gun.caliber, partsList, 'edge')
-  const weight = partsList.reduce((total, part) => total + (part.weight ?? 0), 0)
+  const weight = gunNumber(gun.caliber, partsList, 'weight')
 
   return (
     <GunContainer>
@@ -297,19 +350,26 @@ export const GunView = <P extends GunPartKeys>(
                 <PartName>{selectedPart === 'ammo' && `${gun.caliber} `}{part.name}</PartName>
                 {!!part.stats && (
                   <PartCardStats>
-                    {Object.entries(part.stats).map(([statKey, statValue]) => {
-                      const [status, name, suffix] = statIntel(statKey as keyof PartStats)
-
-                      return (
-                        <GunStat key={`${selectedPart}-${statKey}`}>
-                          <StatName>{name}</StatName>
-                          <StatValue
-                            status={status}
-                            ev={statValue}
-                          >{statValue}{suffix}</StatValue>
-                        </GunStat>
-                      )
-                    })}
+                    {Object
+                      .entries(part.stats)
+                      .map<StatTuple>(([statKey, statValue]) => {
+                        const [status, name, suffix] = statIntel(statKey as keyof PartStats)
+                        return [statKey, (statValue as number), status, name, suffix]
+                      })
+                      .sort(sortStats)
+                      .map(([statKey, statValue, status, name, suffix]) => {
+                        const value = statKey === 'weight' ? statValue / 1000 : statValue
+                        return (
+                          <GunStat key={`${selectedPart}-${statKey}`}>
+                            <StatName>{name}</StatName>
+                            <StatValue
+                              status={status}
+                              ev={value}
+                            >{value}{suffix}</StatValue>
+                          </GunStat>
+                        )
+                      })
+                    }
                   </PartCardStats>
                 )}
               </PartCard>

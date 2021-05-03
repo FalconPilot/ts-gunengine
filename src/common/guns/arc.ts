@@ -41,6 +41,7 @@ export const ARC: Gun<ARCParts> = {
         offsetY: 142,
         layer: 50,
         stats: {
+          weight: 280,
           reliability: 40
         }
       },
@@ -52,6 +53,7 @@ export const ARC: Gun<ARCParts> = {
         offsetY: 142,
         layer: 50,
         stats: {
+          weight: 250,
           handling: 1,
           edge: 1,
           reliability: 20
@@ -68,6 +70,7 @@ export const ARC: Gun<ARCParts> = {
         explodedOffsetY: 85,
         layer: 60,
         stats: {
+          weight: 300,
           handling: 2,
           accuracy: 5,
           reliability: 30
@@ -82,6 +85,7 @@ export const ARC: Gun<ARCParts> = {
         explodedOffsetY: 85,
         layer: 60,
         stats: {
+          weight: 350,
           accuracy: 15,
           reliability: 20
         }
@@ -112,8 +116,8 @@ export const ARC: Gun<ARCParts> = {
         offsetY: 162,
         explodedOffsetY: 240,
         layer: 10,
-        weight: 120,
         stats: {
+          weight: 120,
           capacity: 30
         }
       },
@@ -125,8 +129,8 @@ export const ARC: Gun<ARCParts> = {
         offsetY: 162,
         explodedOffsetY: 240,
         layer: 10,
-        weight: 90,
         stats: {
+          weight: 90,
           capacity: 20,
           handling: 1
         }
@@ -139,8 +143,8 @@ export const ARC: Gun<ARCParts> = {
         offsetY: 162,
         explodedOffsetY: 240,
         layer: 10,
-        weight: 60,
         stats: {
+          weight: 60,
           capacity: 10,
           handling: 1,
           reliability: 5
@@ -155,8 +159,9 @@ export const ARC: Gun<ARCParts> = {
         explodedOffsetY: 240,
         layer: 25,
         stats: {
+          weight: 140,
           capacity: 30,
-          handling: 1,
+          edge: 1,
           reliability: -5
         }
       }
@@ -198,6 +203,7 @@ export const ARC: Gun<ARCParts> = {
         explodedOffsetX: 457,
         layer: 30,
         stats: {
+          weight: 800,
           handling: -3,
           accuracy: 50
         }
@@ -217,6 +223,7 @@ export const ARC: Gun<ARCParts> = {
           muzzle: -130
         },
         stats: {
+          weight: 540,
           handling: 1,
           accuracy: 25
         }
@@ -233,6 +240,7 @@ export const ARC: Gun<ARCParts> = {
         explodedOffsetY: 30,
         layer: 95,
         stats: {
+          weight: 150,
           handling: 1
         }
       },
@@ -246,6 +254,7 @@ export const ARC: Gun<ARCParts> = {
         explodedOffsetY: 10,
         layer: 95,
         stats: {
+          weight: 320,
           accuracy: 10
         }
       }
@@ -261,6 +270,7 @@ export const ARC: Gun<ARCParts> = {
         explodedOffsetY: 198,
         layer: 35,
         stats: {
+          weight: 240,
           handling: 1
         }
       },
@@ -274,6 +284,7 @@ export const ARC: Gun<ARCParts> = {
         explodedOffsetY: 198,
         layer: 35,
         stats: {
+          weight: 710,
           handling: -1,
           accuracy: 5
         }
@@ -289,8 +300,8 @@ export const ARC: Gun<ARCParts> = {
         explodedOffsetX: 170,
         explodedOffsetY: 255,
         layer: 55,
-        weight: 100,
         stats: {
+          weight: 100,
           handling: 1,
           accuracy: -5
         }
@@ -308,6 +319,7 @@ export const ARC: Gun<ARCParts> = {
         layer: 70,
         locks: ['accessory_bottom', 'accessory_side', 'accessory_top'],
         stats: {
+          weight: 260,
           handling: 1,
           reliability: 5,
           accuracy: -5
@@ -330,9 +342,9 @@ export const ARC: Gun<ARCParts> = {
           accessory_side: -9
         },
         stats: {
+          weight: 300,
           handling: 1,
-          reliability: 5,
-          accuracy: -10
+          accuracy: -5
         }
       },
       shortRail: {
@@ -345,7 +357,9 @@ export const ARC: Gun<ARCParts> = {
         explodedOffsetY: 62,
         layer: 70,
         stats: {
+          weight: 500,
           handling: 1,
+          reliability: -5,
           accuracy: -5
         }
       },
@@ -363,6 +377,7 @@ export const ARC: Gun<ARCParts> = {
           gastube: 'alt1'
         },
         stats: {
+          weight: 280,
           accuracy: 10,
           reliability: -10
         },
@@ -385,6 +400,7 @@ export const ARC: Gun<ARCParts> = {
         explodedOffsetY: 33,
         layer: 65,
         stats: {
+          weight: 150,
           accuracy: 5
         }
       }
@@ -399,18 +415,20 @@ export const ARC: Gun<ARCParts> = {
         explodedOffsetY: 85,
         layer: 45,
         stats: {
+          weight: 100,
           accuracy: 5
         }
       },
       yankee: {
         author: Authors.AB,
-        name: 'Yankee Suppressor',
+        name: 'Regular Suppressor',
         assetName: 'ARC_muzzle2.png',
         offsetX: 800,
         offsetY: 139,
         explodedOffsetY: 78,
         layer: 45,
         stats: {
+          weight: 360,
           noise: -5,
           handling: -1,
           piercing: -2
@@ -439,6 +457,7 @@ export const ARC: Gun<ARCParts> = {
         layer: 90,
         lockSpecificAssets: ['laserSide'],
         stats: {
+          weight: 210,
           accuracy: 5
         }
       }
@@ -464,6 +483,7 @@ export const ARC: Gun<ARCParts> = {
         explodedOffsetY: 280,
         layer: 89,
         stats: {
+          weight: 50,
           handling: 1
         }
       },
@@ -477,6 +497,7 @@ export const ARC: Gun<ARCParts> = {
         explodedOffsetY: 280,
         layer: 89,
         stats: {
+          weight: 80,
           edge: 1
         }
       }
@@ -503,6 +524,7 @@ export const ARC: Gun<ARCParts> = {
         lockSpecificAssets: ['laserTop'],
         layer: 91,
         stats: {
+          weight: 210,
           accuracy: 5
         }
       },
@@ -516,6 +538,7 @@ export const ARC: Gun<ARCParts> = {
         explodedOffsetY: 240,
         layer: 91,
         stats: {
+          weight: 180,
           edge: 1
         }
       }

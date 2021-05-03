@@ -1,5 +1,7 @@
 import styled, { css, keyframes } from 'styled-components'
 
+import { StatType } from '$common/types'
+
 import { viewportWidth } from '../app/styled'
 
 const barHeight = 25
@@ -292,7 +294,7 @@ export const GunStat = styled.div`
 
 const colorFromStatus = ({ ev, status }: {
   ev: number
-  status: 'bonus' | 'malus' | 'neutral'
+  status: StatType
 }): string => {
   if (status === 'bonus' && ev > 0 || status === 'malus' && ev < 0) {
     return '#5F5'
