@@ -26,6 +26,7 @@ import {
   GunStat,
   GunWrapper,
   NumberStat,
+  NumberTable,
   PartCard,
   PartCardStats,
   PartName,
@@ -67,12 +68,9 @@ const gunPercentile = <P extends GunPartKeys>(
 ): PositivePercentileValue => applyCaliberStats(
   caliber,
   key,
-  parts.reduce<PositivePercentileValue>((total, part) => {
+  parts.reduce<number>((total, part) => {
     const val = part?.stats?.[key]
-    const newTotal = typeof val === 'number' ? total + val : total
-    return isPositivePercentileValue(newTotal)
-      ? newTotal
-      : roundPercentile(newTotal)
+    return typeof val === 'number' ? total + val : total
   }, 0),
   isPositivePercentileValue,
   roundPercentile
@@ -85,12 +83,9 @@ const gunTenth = <P extends GunPartKeys>(
 ): PositiveTenthValue => applyCaliberStats(
   caliber,
   key,
-  parts.reduce<PositiveTenthValue>((total, part) => {
+  parts.reduce<number>((total, part) => {
     const val = part?.stats?.[key]
-    const newTotal = typeof val === 'number' ? total + val : total
-    return isPositiveTenthValue(newTotal)
-      ? newTotal
-      : roundTenth(newTotal)
+    return typeof val === 'number' ? total + val : total
   }, 0),
   isPositiveTenthValue,
   roundTenth
@@ -124,7 +119,7 @@ const statIntel = (k: keyof PartStats): ['bonus' | 'neutral' | 'malus', string, 
     case 'capacity': return ['neutral', 'Capacity', 'rds']
     case 'damage': return ['bonus', 'Damage']
     case 'edge': return ['bonus', 'Edge']
-    case 'noise': return ['neutral', 'Noise']
+    case 'noise': return ['malus', 'Noise']
     case 'handling': return ['bonus', 'Handling']
     case 'piercing': return ['bonus', 'Piercing']
     case 'reliability': return ['bonus', 'Reliability', '%']
@@ -183,14 +178,18 @@ export const GunView = <P extends GunPartKeys>(
   const piercing = gunNumber(gun.caliber, partsList, 'piercing')
   const capacity = gunNumber(gun.caliber, partsList, 'capacity')
   const edge = gunTenth(gun.caliber, partsList, 'edge')
+  const weight = partsList.reduce((total, part) => total + (part.weight ?? 0), 0)
 
   return (
     <GunContainer>
       <CentralView>
         <SideView>
-          <NumberStat>Damage : {damage}</NumberStat>
-          <NumberStat>Piercing : {piercing}</NumberStat>
-          <NumberStat>Capacity : {capacity}rds</NumberStat>
+          <NumberTable>
+            <NumberStat tag='Damage' val={damage} />
+            <NumberStat tag='Piercing' val={piercing} />
+            <NumberStat tag='Capacity' val={`${capacity}rds`} />
+            <NumberStat tag='Weight' val={`${weight / 1000}kg`} />
+          </NumberTable>
           <PercentileStatBar
             tag='Accuracy'
             barColor='#28A'
@@ -295,7 +294,7 @@ export const GunView = <P extends GunPartKeys>(
                 onClick={onPartChange(selectedPart)}
                 value={pkey}
               >
-                <PartName>{part.name}</PartName>
+                <PartName>{selectedPart === 'ammo' && `${gun.caliber} `}{part.name}</PartName>
                 {!!part.stats && (
                   <PartCardStats>
                     {Object.entries(part.stats).map(([statKey, statValue]) => {

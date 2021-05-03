@@ -8,7 +8,7 @@ export const ARC: Gun<ARCParts> = {
     ammo: {
       standard: {
         author: Authors.DrNoob,
-        name: 'Standard',
+        name: 'Regular',
         assetName: 'ARC_ammo1.png',
         offsetX: 366,
         offsetY: 160,
@@ -26,8 +26,8 @@ export const ARC: Gun<ARCParts> = {
         explodedOffsetY: 240,
         layer: 5,
         stats: {
-          noise: 2,
           piercing: 2,
+          noise: 2,
           reliability: -15
         }
       }
@@ -59,15 +59,16 @@ export const ARC: Gun<ARCParts> = {
       }
     },
     upper: {
-      valkyrieStd: {
+      valkyrie: {
         author: Authors.LuckyStriker,
-        name: 'Valkyrie upper receiver',
+        name: 'Valkyrie aluminum upper receiver',
         assetName: 'ARC_upper1.png',
-        offsetX: 250,
+        offsetX: 253,
         offsetY: 130,
         explodedOffsetY: 85,
         layer: 60,
         stats: {
+          handling: 2,
           accuracy: 5,
           reliability: 30
         }
@@ -76,7 +77,7 @@ export const ARC: Gun<ARCParts> = {
         author: Authors.Benjoo,
         name: 'Tactical upper receiver',
         assetName: 'ARC_upper2.png',
-        offsetX: 232,
+        offsetX: 242,
         offsetY: 130,
         explodedOffsetY: 85,
         layer: 60,
@@ -111,6 +112,7 @@ export const ARC: Gun<ARCParts> = {
         offsetY: 162,
         explodedOffsetY: 240,
         layer: 10,
+        weight: 120,
         stats: {
           capacity: 30
         }
@@ -123,6 +125,7 @@ export const ARC: Gun<ARCParts> = {
         offsetY: 162,
         explodedOffsetY: 240,
         layer: 10,
+        weight: 90,
         stats: {
           capacity: 20,
           handling: 1
@@ -136,9 +139,10 @@ export const ARC: Gun<ARCParts> = {
         offsetY: 162,
         explodedOffsetY: 240,
         layer: 10,
+        weight: 60,
         stats: {
           capacity: 10,
-          handling: 2,
+          handling: 1,
           reliability: 5
         }
       },
@@ -236,8 +240,8 @@ export const ARC: Gun<ARCParts> = {
         author: Authors.Mattia,
         name: 'Valkyrie ARDS',
         assetName: 'ARC_sight2.png',
-        offsetX: 217,
-        offsetY: 71,
+        offsetX: 271,
+        offsetY: 69,
         explodedOffsetX: 97,
         explodedOffsetY: 10,
         layer: 95,
@@ -285,8 +289,9 @@ export const ARC: Gun<ARCParts> = {
         explodedOffsetX: 170,
         explodedOffsetY: 255,
         layer: 55,
+        weight: 100,
         stats: {
-          handling: 2,
+          handling: 1,
           accuracy: -5
         }
       }
@@ -394,8 +399,7 @@ export const ARC: Gun<ARCParts> = {
         explodedOffsetY: 85,
         layer: 45,
         stats: {
-          handling: 1,
-          noise: 7
+          accuracy: 5
         }
       },
       yankee: {
@@ -407,9 +411,8 @@ export const ARC: Gun<ARCParts> = {
         explodedOffsetY: 78,
         layer: 45,
         stats: {
-          noise: 1,
-          accuracy: 5,
-          handling: -2,
+          noise: -5,
+          handling: -1,
           piercing: -2
         }
       }

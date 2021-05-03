@@ -171,13 +171,38 @@ export const StatColumn = styled.div`
   justify-content: flex-start;
 `
 
-export const NumberStat = styled.div`
+export const NumberTable = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`
+
+export const NumberStat = styled.div<{
+  tag: string
+  val: string | number
+}>`
   width: 100%;
   font-weight: bold;
   margin: 4px 0;
+  padding-bottom: 4px;
   font-size: 16px;
   color: #333;
-  text-align: left;
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid #CCC;
+
+  &:before {
+    content: "${p => p.tag}";
+    display: block;
+  }
+
+  &:after {
+    content: "${p => p.val}";
+    display: block;
+    margin-left: auto;
+  }
 `
 
 export const StatBarWrapper = styled.div<{ tag: string }>`

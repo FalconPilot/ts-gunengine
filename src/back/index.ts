@@ -9,6 +9,10 @@ import router from './router'
 
 const PORT = process.env.PORT
 
+if (!PORT) {
+  throw new Error('PORT is undefined')
+}
+
 const app = express()
 
 app.get('/', (req, res) => {

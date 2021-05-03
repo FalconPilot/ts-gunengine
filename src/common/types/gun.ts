@@ -1,6 +1,6 @@
 import { Authors } from '$common/constants'
 
-import { PercentileValue, TenthValue } from './core'
+import { PercentileValue, PositiveTenthValue, TenthValue } from './core'
 
 export enum Caliber {
   R556 = '5.56x45mm'
@@ -9,6 +9,7 @@ export enum Caliber {
 export interface CaliberStats {
   damage: number
   piercing: number
+  noise: PositiveTenthValue
 }
 
 export interface PartStats {
@@ -69,6 +70,7 @@ export interface Part<PartKeys extends GunPartKeys> {
   explodedOffsetX?: number
   explodedOffsetY?: number
   attachPoint?: PartKeys
+  weight?: number
   layer: number
   locks?: PartKeys[]
   lockSpecificAssets?: string[]

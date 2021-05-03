@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "clean": "shx rm -rf dist",
-    "dev:back": "nodemon src/back/index.ts",
+    "dev:back": "dotenv nodemon src/back/index.ts",
     "dev:front": "webpack --watch",
     "dev": "yarn run clean && concurrently \"yarn run dev:back\" \"yarn run dev:front\"",
     "build:back": "tsc && shx cp -r src/back/static dist/back/static",
@@ -33,6 +33,7 @@
     "@types/react-dom": "^17.0.3",
     "@types/styled-components": "^5.1.9",
     "concurrently": "^6.0.2",
+    "dotenv-cli": "^4.0.0",
     "nodemon": "^2.0.7",
     "ts-loader": "^9.1.1",
     "tsconfig-paths-webpack-plugin": "^3.5.1",

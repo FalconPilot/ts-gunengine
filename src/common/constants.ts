@@ -34,7 +34,8 @@ export const caliberStats = (caliber: Caliber): CaliberStats => {
   switch (caliber) {
     case Caliber.R556: return {
       damage: 8,
-      piercing: 2
+      piercing: 2,
+      noise: 7
     }
   }
 }
