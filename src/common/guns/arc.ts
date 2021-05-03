@@ -92,9 +92,9 @@ export const ARC: Gun<ARCParts> = {
       }
     },
     trigger: {
-      fine: {
+      regular: {
         author: Authors.Benjoo,
-        name: 'Light trigger',
+        name: 'Standard trigger',
         assetName: 'ARC_trigger1.png',
         offsetX: 292,
         offsetY: 159,
@@ -102,8 +102,8 @@ export const ARC: Gun<ARCParts> = {
         explodedOffsetY: 253,
         layer: 4,
         stats: {
-          accuracy: 5,
-          reliability: -5
+          weight: 50,
+          accuracy: 5
         }
       }
     },
@@ -177,6 +177,7 @@ export const ARC: Gun<ARCParts> = {
         explodedOffsetY: 96,
         layer: 35,
         stats: {
+          weight: 330,
           reliability: 5
         }
       }
@@ -286,6 +287,7 @@ export const ARC: Gun<ARCParts> = {
         stats: {
           weight: 710,
           handling: -1,
+          reliability: 5,
           accuracy: 5
         }
       }

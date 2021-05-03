@@ -65,10 +65,10 @@ export const Gun: React.FunctionComponent = () => {
     })
   }, [setState, state])
 
-  const View = GunView(gun, parts)
-
   return (
-    <View
+    <GunView
+      gun={gun}
+      parts={parts}
       xray={state.xray}
       exploded={state.exploded}
       selectedPart={state.selectedPart}

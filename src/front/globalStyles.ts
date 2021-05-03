@@ -8,5 +8,6 @@ export const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     font-family: 'Arial';
+    font-size: 12px;
   }
 `

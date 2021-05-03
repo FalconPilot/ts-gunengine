@@ -1,8 +1,7 @@
 import styled, { css, keyframes } from 'styled-components'
 
 import { StatType } from '$common/types'
-
-import { viewportWidth } from '../app/styled'
+import { theme } from '$front/theme'
 
 const barHeight = 25
 
@@ -17,15 +16,16 @@ export const GunContainer = styled.div`
 `
 
 export const CentralView = styled.div`
-  width: ${viewportWidth}px;
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
 `
 
 export const SideView = styled.div`
-  width: ${(viewportWidth - gunWidth) / 2}px;
+  min-width: 180px;
+  width: 100%;
   height: ${gunHeight}px;
   padding: 4px;
   display: flex;
@@ -66,6 +66,7 @@ export const ViewControls = styled.div`
   flex-wrap: wrap;
   align-items: flex-end;
   justify-content: flex-start;
+
 `
 
 export const ViewInput = styled.label`
@@ -108,16 +109,21 @@ const transitionAnimation = (
 `
 
 const selectedPartStyles = css`
-  opacity: 1 !important;
+  opacity: 1;
   filter: drop-shadow(0px 0px 4px #0CF);
 `
 
 const xrayOpacity = (layer: number): number => {
   const min = 0.3
+  const max = 0.8
   const opacity = (100 - layer) / 100
 
   if (opacity < min) {
     return min
+  }
+
+  if (opacity > max) {
+    return max
   }
 
   return opacity
@@ -135,29 +141,43 @@ export const PartWrapper = styled.img<{
   selected: boolean
   xray: boolean
 }>`
-  position: absolute;
-  transform: translate(${p => p.exploded ? p.explodedX : p.originX}px, ${p => p.exploded ? p.explodedY : p.originY}px);
-  z-index: ${p => p.layer};
-  transition: 0.1s filter opacity;
+  ${p => {
+    const baseX = p.exploded ? p.explodedX : p.originX
+    const baseY = p.exploded ? p.explodedY : p.originY
 
-  &:hover {
-    cursor: pointer;
-  }
+    return css`
+      position: absolute;
+      transform: translate(${baseX}px, ${baseY}px);
+      z-index: ${p.layer};
+      opacity: 1;
+      transition: opacity 0.1s, filter 0.1s;
 
-  ${p => p.xray && `
-    opacity: ${xrayOpacity(p.layer)};
-  `}
+      &:hover {
+        cursor: pointer;
+      }
 
-  ${p => p.selected ? selectedPartStyles : `
-    &:hover {
-      ${selectedPartStyles}
-    }
-  `}
+      ${p.xray && `
+        opacity: ${xrayOpacity(p.layer)};
+      `}
 
-  ${p => p.shouldAnimate && css`
-    animation: ${transitionAnimation(p.originX, p.originY, p.explodedX, p.explodedY, p.reverseAnimation)} 0.2s ease-in-out;
-  `}
-`
+      ${p.selected ? selectedPartStyles : `
+        &:hover {
+          ${selectedPartStyles}
+        }
+      `}
+
+      ${p.shouldAnimate && css`
+        animation: ${transitionAnimation(
+          p.originX,
+          p.originY,
+          p.explodedX,
+          p.explodedY,
+          p.reverseAnimation
+        )} 0.2s ease-in-out;
+      }
+    `
+  }`
+}}`
 
 export const StatRow = styled.div`
   display: flex;
@@ -286,6 +306,7 @@ export const GunStat = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  text-shadow: 0px 0px 2px #CCC;
 
   &:not(:last-child) {
     margin-bottom: 4px;
@@ -335,10 +356,10 @@ export const PartCardStats = styled.div`
   flex-direction: column;
   align-items: stretch;
   justify-content: flex-start;
-  background-color: rgba(100, 100, 100, 0.3);
+  background-color: rgba(150, 150, 150, 0.5);
   padding: 5px;
   border-radius: 5px;
-  border: 2px solid rgba(100, 100, 100, 0.1);
+  border: 2px solid rgba(150, 150, 150, 0.1);
 `
 
 export const PartName = styled.div`

@@ -179,30 +179,31 @@ const sortStats = (v1: StatTuple, v2: StatTuple): -1 | 1 => {
   return v1[0] > v2[0] ? 1 : -1
 }
 
-export const GunView = <P extends GunPartKeys>(
+export const GunView = <P extends GunPartKeys>({
+  gun,
+  parts,
+  xray,
+  exploded,
+  shouldAnimate,
+  reverseAnimation,
+  selectedPart,
+  toggleXray,
+  toggleExploded,
+  selectPart,
+  onPartChange
+}: {
   gun: Gun<P>,
-  parts: GunParts<P>
-): React.FunctionComponent<{
+  parts: GunParts<P>,
   xray: boolean
   exploded: boolean
   shouldAnimate: boolean
   reverseAnimation: boolean
-  selectedPart: keyof typeof gun.parts | null
+  selectedPart: keyof GunParts<P> | null
   toggleXray: () => void
   toggleExploded: () => void
-  selectPart: (key: keyof typeof gun.parts | null) => () => void
-  onPartChange: (partKey: keyof typeof gun.parts) => (evt: React.MouseEvent<HTMLButtonElement>) => void
-}> => ({
-  xray,
-  exploded,
-  selectedPart,
-  shouldAnimate,
-  reverseAnimation,
-  toggleXray,
-  selectPart,
-  onPartChange,
-  toggleExploded
-}) => {
+  selectPart: (key: keyof GunParts<P> | null) => () => void
+  onPartChange: (partKey: keyof GunParts<P>) => (evt: React.MouseEvent<HTMLButtonElement>) => void
+}): React.ReactElement | null => {
   const lockedKeys = Object
     .values<Part<P>>(parts)
     .reduce<P[]>((acc, part) => acc.concat(part.locks ?? []), [])
