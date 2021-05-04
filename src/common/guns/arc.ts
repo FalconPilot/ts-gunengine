@@ -72,8 +72,8 @@ export const ARC: Gun<ARCParts> = {
         stats: {
           weight: 300,
           handling: 2,
-          accuracy: 5,
-          reliability: 30
+          accuracy: -5,
+          reliability: 20
         }
       },
       tactical: {
@@ -86,8 +86,8 @@ export const ARC: Gun<ARCParts> = {
         layer: 60,
         stats: {
           weight: 350,
-          accuracy: 15,
-          reliability: 20
+          accuracy: 10,
+          reliability: 25
         }
       }
     },
@@ -286,8 +286,22 @@ export const ARC: Gun<ARCParts> = {
         layer: 35,
         stats: {
           weight: 710,
-          handling: -1,
+          handling: -2,
           reliability: 5,
+          accuracy: 10
+        }
+      },
+      ergonomic: {
+        author: Authors.DrNoob,
+        name: 'Wide padded collapsible stock',
+        assetName: 'ARC_stock3.png',
+        offsetX: 18,
+        offsetY: 132,
+        explodedOffsetX: 8,
+        explodedOffsetY: 190,
+        layer: 35,
+        stats: {
+          weight: 280,
           accuracy: 5
         }
       }
@@ -371,8 +385,8 @@ export const ARC: Gun<ARCParts> = {
         assetName: 'ARC_guard2.png',
         offsetX: 420,
         offsetY: 129,
-        explodedOffsetX: 434,
-        explodedOffsetY: 39,
+        explodedOffsetX: 442,
+        explodedOffsetY: 55,
         layer: 70,
         locks: ['accessory_bottom', 'accessory_side'],
         suffixAssets: {
@@ -502,6 +516,24 @@ export const ARC: Gun<ARCParts> = {
           weight: 80,
           edge: 1
         }
+      },
+      launcher40: {
+        author: Authors.DrNoob,
+        name: '40mm Grenade launcher',
+        assetName: 'glauncher_1.png',
+        offsetX: 425,
+        offsetY: 174,
+        explodedOffsetX: 525,
+        explodedOffsetY: 284,
+        layer: 89,
+        stats: {
+          weight: 1360,
+          handling: -2,
+          accuracy: -5
+        },
+        extra: [
+          ['grenades', Caliber.G40]
+        ]
       }
     },
     accessory_side: {

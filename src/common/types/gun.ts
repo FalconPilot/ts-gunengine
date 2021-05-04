@@ -2,8 +2,12 @@ import { Authors } from '$common/constants'
 
 import { PercentileValue, PositiveTenthValue, TenthValue } from './core'
 
+export type ExtraFeatures =
+  | ['grenades', Caliber]
+
 export enum Caliber {
-  R556 = '5.56x45mm'
+  R556 = '5.56x45mm',
+  G40 = '40mm'
 }
 
 export interface CaliberStats {
@@ -80,6 +84,7 @@ export interface Part<PartKeys extends GunPartKeys> {
   locks?: PartKeys[]
   lockSpecificAssets?: string[]
   stats?: PartStats
+  extra?: ExtraFeatures[]
   suffixAssets?: {
     [k in PartKeys]?: string
   }

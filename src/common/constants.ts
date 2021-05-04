@@ -37,6 +37,11 @@ export const caliberStats = (caliber: Caliber): CaliberStats => {
       piercing: 2,
       noise: 7
     }
+    case Caliber.G40: return {
+      damage: 20,
+      piercing: 10,
+      noise: 10
+    }
   }
 }
 

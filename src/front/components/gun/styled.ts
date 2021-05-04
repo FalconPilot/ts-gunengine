@@ -227,6 +227,13 @@ export const NumberStat = styled.div<{
   }
 `
 
+export const ExtraFeature = styled(NumberStat)`
+  &:before {
+    content: "+ ${p => p.tag}";
+    color: #0C0;
+  }
+`
+
 export const StatBarWrapper = styled.div<{ tag: string }>`
   position: relative;
   width: 100%;

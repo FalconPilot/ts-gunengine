@@ -2,6 +2,7 @@ import * as React from 'react'
 
 import {
   Caliber,
+  ExtraFeatures,
   Gun,
   GunPartKeys,
   GunParts,
@@ -9,7 +10,8 @@ import {
   PartStats,
   PositivePercentileValue,
   PositiveTenthValue,
-  StatType
+  StatType,
+  ValueOf
 } from '$common/types'
 
 import {
@@ -23,6 +25,7 @@ import { caliberStats } from '$common/constants'
 
 import {
   CentralView,
+  ExtraFeature,
   GunContainer,
   GunStat,
   GunWrapper,
@@ -127,6 +130,12 @@ const statIntel = (k: keyof PartStats): [StatType, string, string?] => {
     case 'piercing': return ['bonus', 'Piercing']
     case 'reliability': return ['bonus', 'Reliability', '%']
     case 'weight': return ['neutral', 'Weight', 'kg']
+  }
+}
+
+const extraName = (k: ExtraFeatures[0]): string => {
+  switch (k) {
+    case 'grenades': return 'Grenades'
   }
 }
 
@@ -269,6 +278,14 @@ export const GunView = <P extends GunPartKeys>({
             barColor='#3C1'
             wValue={edge}
           />
+          <NumberTable>
+            {partsList
+              .reduce<ExtraFeatures[]>((acc, p) => acc.concat(p?.extra ?? []), [])
+              .map(extra => (
+                <ExtraFeature tag={extraName(extra[0])} val={extra[1]} />
+              ))
+            }
+          </NumberTable>
         </SideView>
         <StaticGunWrapper gunName={gun.name}>
           <GunWrapper exploded={exploded}>
