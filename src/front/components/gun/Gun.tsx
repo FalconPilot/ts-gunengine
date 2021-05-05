@@ -282,7 +282,7 @@ export const GunView = <P extends GunPartKeys>({
             {partsList
               .reduce<ExtraFeatures[]>((acc, p) => acc.concat(p?.extra ?? []), [])
               .map(extra => (
-                <ExtraFeature tag={extraName(extra[0])} val={extra[1]} />
+                <ExtraFeature key={extra[0]} tag={extraName(extra[0])} val={extra[1]} />
               ))
             }
           </NumberTable>

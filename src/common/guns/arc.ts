@@ -191,7 +191,12 @@ export const ARC: Gun<ARCParts> = {
         offsetY: 137,
         explodedOffsetX: 457,
         explodedOffsetY: 190,
-        layer: 7
+        layer: 7,
+        stats: {
+          weight: 50,
+          handling: 1,
+          reliability: -5
+        }
       }
     },
     barrel: {
@@ -318,8 +323,22 @@ export const ARC: Gun<ARCParts> = {
         layer: 55,
         stats: {
           weight: 100,
-          handling: 1,
+          handling: 2,
           accuracy: -5
+        }
+      },
+      tactical: {
+        author: Authors.DrNoob,
+        name: 'Tactical grip',
+        assetName: 'ARC_grip2.png',
+        offsetX: 240,
+        offsetY: 189,
+        explodedOffsetX: 170,
+        explodedOffsetY: 255,
+        layer: 55,
+        stats: {
+          weight: 120,
+          accuracy: 5
         }
       }
     },
