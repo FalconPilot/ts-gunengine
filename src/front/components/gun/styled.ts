@@ -1,7 +1,6 @@
 import styled, { css, keyframes } from 'styled-components'
 
 import { StatType } from '$common/types'
-import { theme } from '$front/theme'
 
 const barHeight = 25
 
@@ -80,7 +79,7 @@ export const ViewInput = styled.label`
   border: 1px solid #CCC;
   border-radius: 4px;
   text-align: left;
-  & > :first-child {
+  & > :first-of-type {
     margin-right: auto;
   }
 `
@@ -166,7 +165,7 @@ export const PartWrapper = styled.img<{
         }
       `}
 
-      ${p.shouldAnimate && css`
+      ${!p.shouldAnimate ? '' : css`
         animation: ${transitionAnimation(
           p.originX,
           p.originY,
@@ -174,9 +173,9 @@ export const PartWrapper = styled.img<{
           p.explodedY,
           p.reverseAnimation
         )} 0.2s ease-in-out;
+        `
       }
     `
-  }`
 }}`
 
 export const StatRow = styled.div`

@@ -298,7 +298,7 @@ export const ARC: Gun<ARCParts> = {
       },
       ergonomic: {
         author: Authors.DrNoob,
-        name: 'Wide padded collapsible stock',
+        name: 'Padded collapsible stock',
         assetName: 'ARC_stock3.png',
         offsetX: 18,
         offsetY: 132,
@@ -308,6 +308,20 @@ export const ARC: Gun<ARCParts> = {
         stats: {
           weight: 280,
           accuracy: 5
+        }
+      },
+      pdw: {
+        author: Authors.Wouter,
+        name: 'PDW Stock',
+        assetName: 'ARC_stock4.png',
+        offsetX: 72,
+        offsetY: 140,
+        explodedOffsetX: 10,
+        explodedOffsetY: 200,
+        layer: 51,
+        stats: {
+          weight: 530,
+          edge: 1
         }
       }
     },
@@ -319,7 +333,7 @@ export const ARC: Gun<ARCParts> = {
         offsetX: 237,
         offsetY: 190,
         explodedOffsetX: 170,
-        explodedOffsetY: 255,
+        explodedOffsetY: 275,
         layer: 55,
         stats: {
           weight: 100,
@@ -334,7 +348,7 @@ export const ARC: Gun<ARCParts> = {
         offsetX: 240,
         offsetY: 189,
         explodedOffsetX: 170,
-        explodedOffsetY: 255,
+        explodedOffsetY: 275,
         layer: 55,
         stats: {
           weight: 120,
