@@ -79,7 +79,7 @@ export const gunNumber = <P extends GunPartKeys>(
   Number
 )
 
-export const shouldDisplayGun = (lockedKeys: string[], restrictedParts: string[]) => <P extends GunPartKeys>(
+export const shouldDisplayPart = (lockedKeys: string[], restrictedParts: string[]) => <P extends GunPartKeys>(
   [k, part]: [string, Part<P>]
 ): boolean => (
   !lockedKeys.includes(k) &&

@@ -15,7 +15,7 @@ import {
   gunNumber,
   gunPercentile,
   gunTenth,
-  shouldDisplayGun,
+  shouldDisplayPart,
   sortStats,
   statIntel
 } from '$front/utils'
@@ -77,7 +77,7 @@ export const GunView = <P extends GunPartKeys>({
 
   const partsList: Part<P>[] = Object
     .entries<Part<P>>(parts)
-    .filter(shouldDisplayGun(lockedKeys, restrictedParts))
+    .filter(shouldDisplayPart(lockedKeys, restrictedParts))
     .map(([_k, v]) => v)
 
   const toSuffix = Object
@@ -145,7 +145,7 @@ export const GunView = <P extends GunPartKeys>({
           <GunWrapper exploded={exploded}>
             {Object
               .entries<Part<P>>(parts)
-              .filter(shouldDisplayGun(lockedKeys, restrictedParts))
+              .filter(shouldDisplayPart(lockedKeys, restrictedParts))
               .map(([rawPartKey, part]) => {
                 const partKey = rawPartKey as P
                 const offsetX = (offset: number, expl?: boolean): number => offset + partsList.reduce<number>((total, p) => (
