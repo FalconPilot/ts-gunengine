@@ -113,3 +113,5 @@ export interface Gun<PartKeys extends GunPartKeys> {
 export type GunParts<PartKeys extends GunPartKeys> = {
   [k in PartKeys]: Part<PartKeys>
 }
+
+export type StatTuple = [string, number, StatType, string, string?]
